@@ -8,6 +8,7 @@ public class Sorting {
 	 * @param place2 - index of the second item
 	 */
 	public void swap(int[] list, int place1, int place2) {
+		
 		int temp = list[place2];
 		list[place2] = list[place1];
 		list [place1] = temp;
@@ -58,8 +59,8 @@ public class Sorting {
 	 * Implements the merge sort algorithm.
 	 * @param arr - An array of Strings to be sorted.
 	 */	
-	public void mergeSort(int[] arr,int low ,int high)
-	{
+	public void mergeSort(int[] arr,int low ,int high) {
+		
 		int middle;
 		if (low < high) {
 			// Get the index of the element which is in the middle
@@ -72,6 +73,7 @@ public class Sorting {
             merge(arr, low,(middle + 1), high);
 		}
 	}
+	
 	/**
 	 * Sorts one side of the given array
 	 * @param arr - the array that will be sorted
@@ -80,7 +82,7 @@ public class Sorting {
 	 * @param high - Index of highest item
 	 * @return arr - A sorted array
 	 */
-	public int[] merge(int[] arr, int low, int mid, int high) {
+	private int[] merge(int[] arr, int low, int mid, int high) {
 		int[] temp = new int[arr.length];
 		int leftend, elements, index;
 	    /*
@@ -124,4 +126,52 @@ public class Sorting {
        }
        return arr;
 	}
+	
+	/** 
+	 * Implements the quick sort algorithm.
+	 * @param arr - An array of integers to be sorted.
+	 * @param low - leftmost index of the array  
+	 * @param high - rightmost index of the array
+	 */	
+	public void quickSort(int [] arr, int low, int high) {
+		
+		if (low >= high) {
+			return;
+		}
+	    int pivotIndex = partition(arr, low, high);
+	    //recursion and splits the list into two to be sorted
+	    quickSort(arr, low, pivotIndex-1);
+		quickSort(arr,pivotIndex, high);
+		//printArray(arr);
+	}
+	
+	/** 
+	 *Partition the array into two parts based on the pivot(center item).
+	 * @param arr -  An array of integers to be sorted.
+	 * @param low - leftmost index of the array.
+	 * @param high - rightmost index of the array.
+	 * @return the new index of the pivot.
+	 */
+	private int partition(int [] arr, int low, int high) {
+	      int pivot = arr[(low + high) / 2];
+	      //middle index as pivot
+	      while (low <= high) {
+	            while (arr[low] < pivot) {
+	                  low++;
+	            }
+	            while (arr[high] > pivot) {
+	                  high--;
+	            }
+	            if (low <= high) {
+	                  swap(arr,low,high);
+	                  //when low is still less than or equal to high, we swap the items
+	                  low++;
+	                  high--;
+	                  //move one step towards each opposite end so we do not infinite loop
+	            }
+	      }
+	      return low;
+	      //returns low so that it does not recurse infinitely over the original pivot.
+	}
+	
 }

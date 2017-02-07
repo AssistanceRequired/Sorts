@@ -5,17 +5,32 @@ public class SortRunner {
 		int[] arr = arrayBuilder(100);
 		
 		Sorting sort = new Sorting();
+		
+		System.out.print("Array before Insertionsort: ");
+		printArray(arr);
 		sort.insertionSort(arr);
 		printArray(arr);
 		
 		scramble(arr);
+		System.out.print("\nArray before Selectionsort: ");
+		printArray(arr);
 		sort.selectionSort(arr);
 		printArray(arr);
 		
 		scramble(arr);
+		System.out.print("\nArray before Mergesort: ");
+		printArray(arr);
 		sort.mergeSort(arr,0,arr.length -1);
 		printArray(arr);
+		
+		scramble(arr);
+		System.out.print("\nArray before Quicksort: ");
+		printArray(arr);
+		sort.quickSort(arr,0,arr.length-1);
+		printArray(arr);
+		
 	}
+	
 	/**
 	 * Builds an array of random integer values.
 	 * @param x  number of ints requested in the array
@@ -23,6 +38,7 @@ public class SortRunner {
 	 * 
 	 */
 	public static int[] arrayBuilder(int size) {
+		
 		int[] arr = new int[size];
 		
 		for(int a = 0; a < size; a++) {
@@ -30,6 +46,7 @@ public class SortRunner {
 		}
 		return arr;
 	}
+	
 	/**
 	 * Simple method that scrambles integers in an array
 	 * @param arr
@@ -40,6 +57,7 @@ public class SortRunner {
 			new Sorting().swap(arr,i,(int)(Math.random()*arr.length));
 		}
 	}
+	
 	/**
 	 * Prints out a one dimension array
 	 * @param arr
