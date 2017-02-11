@@ -29,6 +29,12 @@ public class SortRunner {
 		sort.quickSort(arr,0,arr.length-1);
 		printArray(arr);
 		
+		scramble(arr);
+		System.out.print("\nArray before Bubblesort: ");
+		printArray(arr);
+		sort.bubbleSort(arr);
+		printArray(arr);
+		
 	}
 	
 	/**
